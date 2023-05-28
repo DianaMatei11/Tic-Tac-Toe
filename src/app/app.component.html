@@ -1,0 +1,30 @@
+
+<div class="board">
+  
+<div [class.col1]="boardState.wonBy[0]==='col' && boardState.wonBy[1]===0"
+[class.col2]="boardState.wonBy[0]==='col' && boardState.wonBy[1]===1"
+[class.col3]="boardState.wonBy[0]==='col' && boardState.wonBy[1]===2"
+[class.row1]="boardState.wonBy[0]==='row' && boardState.wonBy[1]===0"
+[class.row2]="boardState.wonBy[0]==='row' && boardState.wonBy[1]===1"
+[class.row3]="boardState.wonBy[0]==='row' && boardState.wonBy[1]===2"
+[class.diag]="boardState.wonBy[0]==='diag'"
+[class.antidiag]="boardState.wonBy[0]==='antidiag'"
+*ngIf="boardState.finalJoc" 
+class="line">
+</div>
+<div >
+  <div *ngFor="let line of boardState.grid;let index_linie = index;">
+    <div style="display: flex;">
+      <div *ngFor="let row of line;let index_coloana=index" class="grid" (click)="changeGrid(index_linie,index_coloana)">
+        <div style=" display: flex;justify-content: center;">
+          <div style="margin-top:30px;">
+            <i *ngIf="boardState.grid[index_linie][index_coloana] === 'x'" class="fa-solid fa-x" style="font-size: 50px;"></i>
+            <i *ngIf="boardState.grid[index_linie][index_coloana] === 'o'" class="fa-solid fa-o" style="font-size: 50px;"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button style="margin-top: 450px; margin-left: -180px; text-align: center;"  (click)="boardState.restart()">restart</button>
